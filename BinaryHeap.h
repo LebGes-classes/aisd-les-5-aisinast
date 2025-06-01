@@ -1,3 +1,5 @@
+#pragma once
+
 #include <iostream>
 #include <vector>
 
@@ -12,18 +14,37 @@ public:
     BinaryHeap() = default;
     ~BinaryHeap() = default;
 
+    // вставка элемента в конец
     void insert(D data);
+
+    // возвращает и удаляет минимальный элемент
     D extractMin();
+
+    // возвращает минимальный элемент без удаления
     D getMin();
+
+    // возвращает размер кучи
     int getSize();
+
+    // проверяет кучу на пустоту
+    bool isEmpty();
 
 private:
     vector<D> array;
 
+    // опускает элемент, пока тот не встанет на свое место
     void siftDown(int index); 
+
+    // поднимает элемент, пока тот не встанет на свое место
     void siftUp(int index);
+
+    // возвращает индекс родителя 
     int getParentIndex(int childIndex);
+    
+    // возвращает индекс левого ребёнка
     int getLeftChildIndex(int parentIndex);
+
+    // возвращает индекс правого ребёнка
     int getRightChildIndex(int parentIndex);
 };
 
@@ -65,6 +86,12 @@ template <typename D>
 int BinaryHeap<D>::getSize() 
 {
     return array.size();
+}
+
+template <typename D>
+bool BinaryHeap<D>::isEmpty()
+{
+    return array.size() == 0;
 }
 
 template <typename D>
